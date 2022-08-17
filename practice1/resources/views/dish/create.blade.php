@@ -11,16 +11,20 @@
 
         <div class="card-body">
           <ul>
-            <form action="{{route('dishes-store')}}" method="post">
+            <form action="{{route('dishes-store')}}" method="post" enctype="multipart/form-data">
               <div class="form-group">
-                <label for="color_title">Title</label>
-                <input class="form-control" type="text" name="dish_title" value="{{old('create_color_input')}}">
-                <label for="create_color_input">City</label>
-                <input class="form-control" type="text" name="dish_city" value="{{old('color_title')}}">
-                <label for="create_color_input">Address</label>
-                <input class="form-control" type="text" name="dish_address" value="{{old('color_title')}}">
-                <label for="create_color_input">Working time</label>
-                <input class="form-control" type="text" name="dish_working_time" value="{{old('color_title')}}">
+                <label for="restorant_id">Restorant</label>
+                <select class="form-select" name="restorant_id">
+                  @foreach($restorants as $restorant)
+                  <option value="{{$restorant->id}}">{{$restorant->title}}</option>
+                  @endforeach
+                </select>
+                <label for="title">Title</label>
+                <input class="form-control" type="text" name="title" value="{{old('color_title')}}">
+                <label for="price">Price</label>
+                <input class="form-control" type="text" name="price" value="{{old('color_title')}}">
+                <label for="dish_photo">Photo</label>
+                <input class="form-control" type="file" name="dish_photo" value="{{old('color_title')}}">
 
               </div>
               @csrf

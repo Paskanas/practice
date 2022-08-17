@@ -24,6 +24,11 @@
               <div class="color-box" {{-- style="background: {{$color->color}};" --}}>
                 {{-- {{$color->color}} --}}
                 <h2>{{$dish->title}}</h2>
+                @if($dish->photo)
+                <div class="w-25 h-25">
+                  <img class="rounded" src="{{$dish->photo}}" alt="Dish photo">
+                </div>
+                @endif
               </div>
 
               <div class="controls">

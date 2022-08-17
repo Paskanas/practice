@@ -80,62 +80,62 @@
               </div>
             </li>
             {{-- my comment --}}
-            {{-- <li class="nav-item dropdown">
+            <li class="nav-item dropdown">
               <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                Animals
+                Dishes
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{route('animals-index')}}">
-            Animals List
-            </a>
-            <a class="dropdown-item" href="{{route('animals-create')}}">
-              New Animal
-            </a>
-        </div>
-        </li> --}}
-        @endif
-        {{-- my comment --}}
-        {{-- <li class="nav-item dropdown">
+                <a class="dropdown-item" href="{{route('dishes-index')}}">
+                  Dishes List
+                </a>
+                <a class="dropdown-item" href="{{route('dishes-create')}}">
+                  New Dish
+                </a>
+              </div>
+            </li>
+            @endif
+            {{-- my comment --}}
+            {{-- <li class="nav-item dropdown">
               <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 Orders
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 @if(Auth::user()->role >9)
                 <a class="dropdown-item" href="{{route('orders-index')}}">
-        Orders List
-        </a>
-        @endif
-        <a class="dropdown-item" href="{{route('my-orders')}}">
-          My orders
-        </a>
-      </div>
-      </li> --}}
+            Orders List
+            </a>
+            @endif
+            <a class="dropdown-item" href="{{route('my-orders')}}">
+              My orders
+            </a>
+        </div>
+        </li> --}}
 
-      {{-- end pasted code --}}
-      <li class="nav-item dropdown">
-        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-          {{ Auth::user()->name }}
-        </a>
-
-        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-            {{ __('Logout') }}
+        {{-- end pasted code --}}
+        <li class="nav-item dropdown">
+          <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+            {{ Auth::user()->name }}
           </a>
 
-          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-            @csrf
-          </form>
-        </div>
-      </li>
-      {{-- my comment --}}
-      {{-- <li class="nav-item small--cart">
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+              {{ __('Logout') }}
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+              @csrf
+            </form>
+          </div>
+        </li>
+        {{-- my comment --}}
+        {{-- <li class="nav-item small--cart">
 
             </li> --}}
 
-      @endguest
-      </ul>
-  </div>
+        @endguest
+        </ul>
+      </div>
   </div>
   </nav>
 

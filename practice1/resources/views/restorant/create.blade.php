@@ -13,13 +13,13 @@
           <ul>
             <form action="{{route('restorants-store')}}" method="post">
               <div class="form-group">
-                <label for="color_title">Title</label>
+                <label for="restorant_title">Title</label>
                 <input class="form-control" type="text" name="restorant_title" value="{{old('create_color_input')}}">
-                <label for="create_color_input">City</label>
+                <label for="restorant_city">City</label>
                 <input class="form-control" type="text" name="restorant_city" value="{{old('color_title')}}">
-                <label for="create_color_input">Address</label>
+                <label for="restorant_address">Address</label>
                 <input class="form-control" type="text" name="restorant_address" value="{{old('color_title')}}">
-                <label for="create_color_input">Working time</label>
+                <label for="restorant_working_time">Working time</label>
                 <input class="form-control" type="text" name="restorant_working_time" value="{{old('color_title')}}">
 
               </div>

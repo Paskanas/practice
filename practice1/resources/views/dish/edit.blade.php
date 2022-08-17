@@ -6,36 +6,46 @@
     <div class="col-md-8">
       <div class="card">
         <div class="card-header">
-          <h1>Edit restorant</h1>
+          <h1>Edit dish</h1>
         </div>
 
         <div class="card-body">
           <ul>
-            <form action="{{route('restorants-update', $restorant)}}" method="post">
-              {{-- <div class="form-group">
-                <label>Pavadinimas</label>
-                <input type="text" class="form-control">
-                <small class="form-text text-muted">Kažkoks parašymas.</small>
-              </div> --}}
-              <div class="form-group">
-                <label for="color_title">Title</label>
-                <input class="form-control" type="text" name="restorant_title" value={{$restorant->title}}>
-                <label for="create_color_input">City</label>
-                <input class="form-control" type="text" name="restorant_city" value={{$restorant->city}}>
-                <label for="create_color_input">Address</label>
-                <input class="form-control" type="text" name="restorant_address" value={{$restorant->address}}>
-                <label for="create_color_input">Working time</label>
-                <input class="form-control" type="text" name="restorant_working_time" value={{$restorant->working_time}}>
-
+            <form action="{{route('dishes-update', $dish)}}" method="post" enctype="multipart/form-data">
+              <label for="restorant_id">Restorant</label>
+              <select class="form-select" name="restorant_id">
+                @foreach($restorants as $restorant)
+                <option value="{{$restorant->id}}" @if($restorant->id === $dish->restorant_id) selected @endif>{{$restorant->title}}</option>
+                @endforeach
+              </select>
+              <label for="title">Title</label>
+              <input class="form-control" type="text" name="title" value="{{$dish->title}}">
+              <label for="price">Price</label>
+              <input class="form-control" type="text" name="price" value="{{$dish->price}}">
+              <label for="dish_photo">Photo</label>
+              <input class="form-control" type="file" name="dish_photo" value="{{$dish->photo}}">
+              @if($dish->photo)
+              <div class="image-box w-25 h-25">
+                <img class="rounded mt-2" src="{{$dish->photo}}" alt="Dish photo">
               </div>
-              @csrf
-              @method('put')
-              <button class="btn btn-outline-primary mt-4" type="submit">Save</button>
-            </form>
-          </ul>
+              @endif
+
         </div>
+        @csrf
+        <button class="btn btn-outline-primary mt-4" type="submit">Save</button>
+        @method('put')
+        </form>
+        @if($dish->photo)
+        <form action="{{route('dishes-delete-picture',$dish)}}" method="post">
+          @csrf
+          @method('delete')
+          <button class="btn btn-outline-danger m-2" type="submit">Delete photo</button>
+        </form>
+        @endif
+        </ul>
       </div>
     </div>
   </div>
+</div>
 </div>
 @endsection

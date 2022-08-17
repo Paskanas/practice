@@ -50,10 +50,12 @@ Route::prefix('dishes')->name('dishes-')->group(function () {
     Route::get('', [DishController::class, 'index'])->name('index')->middleware('rp:user');
     Route::get('create', [DishController::class, 'create'])->name('create')->middleware('rp:admin');
     Route::post('', [DishController::class, 'store'])->name('store')->middleware('rp:admin');
-    Route::get('edit/{restorant}', [DishController::class, 'edit'])->name('edit')->middleware('rp:admin');
-    Route::put('{restorant}', [DishController::class, 'update'])->name('update')->middleware('rp:admin');
-    Route::delete('{restorant}', [DishController::class, 'destroy'])->name('delete')->middleware('rp:admin');
+    Route::get('edit/{dish}', [DishController::class, 'edit'])->name('edit')->middleware('rp:admin');
+    Route::put('{dish}', [DishController::class, 'update'])->name('update')->middleware('rp:admin');
+    Route::delete('{dish}', [DishController::class, 'destroy'])->name('delete')->middleware('rp:admin');
     Route::get('show/{id}', [DishController::class, 'show'])->name('show')->middleware('rp:user');
+    Route::delete('delete-picture/{dish}', [DishController::class, 'deletePicture'])->name('delete-picture');
+
     // Route::get('show', [DishController::class, 'link'])->name('show-route');
 });
 
