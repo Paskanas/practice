@@ -39,12 +39,12 @@ class RestorantController extends Controller
     public function store(Request $request)
     {
         $restorant = new Restorant;
-        $restorant->title = $request->car_service_address;
-        $restorant->city = $request->car_service_phone;
-        $restorant->address = $request->car_service_title;
-        $restorant->working_time = $request->car_service_title;
+        $restorant->title = $request->restorant_title;
+        $restorant->city = $request->restorant_city;
+        $restorant->address = $request->restorant_address;
+        $restorant->working_time = $request->restorant_working_time;
         $restorant->save();
-        return redirect()->route('restorant-index');
+        return redirect()->route('restorants-index');
     }
 
     /**
@@ -53,9 +53,10 @@ class RestorantController extends Controller
      * @param  \App\Models\Restorant  $restorant
      * @return \Illuminate\Http\Response
      */
-    public function show(Restorant $restorant)
+    public function show(int $restorantId)
     {
-        //
+        $restorant = Restorant::where('id', $restorantId)->first();
+        return view('restorant.show', ['restorant' => $restorant]);
     }
 
     /**
@@ -64,9 +65,9 @@ class RestorantController extends Controller
      * @param  \App\Models\Restorant  $restorant
      * @return \Illuminate\Http\Response
      */
-    public function edit(Restorant $restorant)
+    public function edit(restorant $restorant)
     {
-        //
+        return view('restorant.edit', ['restorant' => $restorant]);
     }
 
     /**
@@ -76,9 +77,14 @@ class RestorantController extends Controller
      * @param  \App\Models\Restorant  $restorant
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRestorantRequest $request, Restorant $restorant)
+    public function update(Request $request, Restorant $restorant)
     {
-        //
+        $restorant->title = $request->restorant_title;
+        $restorant->city = $request->restorant_city;
+        $restorant->address = $request->restorant_address;
+        $restorant->working_time = $request->restorant_working_time;
+        $restorant->save();
+        return redirect()->route('restorants-index');
     }
 
     /**
@@ -89,6 +95,7 @@ class RestorantController extends Controller
      */
     public function destroy(Restorant $restorant)
     {
-        //
+        $restorant->delete();
+        return redirect()->route('restorants-index');
     }
 }
