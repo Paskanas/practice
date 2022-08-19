@@ -64,7 +64,6 @@
             </li>
             @endif
             @else
-            @if(Auth::user()->role >9)
             {{-- pasted code start --}}
             <li class="nav-item dropdown">
               <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -74,9 +73,11 @@
                 <a class="dropdown-item" href="{{route('restorants-index')}}">
                   Restorants List
                 </a>
+                @if(Auth::user()->role >9)
                 <a class="dropdown-item" href="{{route('restorants-create')}}">
                   New Restorant
                 </a>
+                @endif
               </div>
             </li>
             {{-- my comment --}}
@@ -88,12 +89,14 @@
                 <a class="dropdown-item" href="{{route('dishes-index')}}">
                   Dishes List
                 </a>
+                @if(Auth::user()->role >9)
                 <a class="dropdown-item" href="{{route('dishes-create')}}">
                   New Dish
                 </a>
+                @endif
               </div>
             </li>
-            @endif
+
             {{-- my comment --}}
             {{-- <li class="nav-item dropdown">
               <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

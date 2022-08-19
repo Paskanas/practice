@@ -26,7 +26,7 @@
                 <h2>{{$restorant->title}}</h2>
               </div>
 
-              <div class="controls">
+              <div class="d-flex justify-start">
                 <a class="btn btn-outline-primary m-2" href="{{route('restorants-show', $restorant->id)}}">SHOW</a>
                 @if(Auth::user()->role >9)
                 <a class="btn btn-outline-success m-2" href="{{route('restorants-edit', $restorant)}}">EDIT</a>

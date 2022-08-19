@@ -7,6 +7,7 @@ use App\Http\Requests\StoreDishRequest;
 use App\Http\Requests\UpdateDishRequest;
 use App\Models\Restorant;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class DishController extends Controller
 {
@@ -19,6 +20,18 @@ class DishController extends Controller
     {
         $dishes = Dish::all();
         return view('dish.index', ['dishes' => $dishes, 'title' => 'Dishes']);
+    }
+
+    public function indexJs()
+    {
+
+        $dishes = Dish::all();
+        foreach ($dishes as &$dish) {
+            $dish['restorantTitle'] = $dish->getDishRestorants->title;
+        }
+        return Inertia::render('Dishes', [
+            'dishes' => $dishes,
+        ]);
     }
 
     /**
@@ -74,9 +87,10 @@ class DishController extends Controller
      * @param  \App\Models\Dish  $dish
      * @return \Illuminate\Http\Response
      */
-    public function show(Dish $dish)
+    public function show(int $dishId)
     {
-        //
+        $dish = Dish::where('id', $dishId)->first();
+        return view('dish.show', ['dish' => $dish]);
     }
 
     /**

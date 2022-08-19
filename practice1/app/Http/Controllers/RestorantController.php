@@ -6,6 +6,7 @@ use App\Models\Restorant;
 use App\Http\Requests\StoreRestorantRequest;
 use App\Http\Requests\UpdateRestorantRequest;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class RestorantController extends Controller
 {
@@ -18,6 +19,14 @@ class RestorantController extends Controller
     {
         $restorants = Restorant::all();
         return view('restorant.index', ['restorants' => $restorants, 'title' => 'Restorant list']);
+    }
+
+    public function indexJs()
+    {
+        $restorants = Restorant::all();
+        return Inertia::render('Restorants', [
+            'restorants' => $restorants,
+        ]);
     }
 
     /**

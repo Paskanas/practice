@@ -32,9 +32,15 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::prefix('restorants-js')->name('restorants-js-')->group(function () {
+    Route::get('', [RestorantController::class, 'indexJs'])->name('index')->middleware('rp:user');
+});
+Route::prefix('dishes-js')->name('dishes-js-')->group(function () {
+    Route::get('', [DishController::class, 'indexJs'])->name('index')->middleware('rp:user');
+});
+
 // Restorants
 Route::prefix('restorants')->name('restorants-')->group(function () {
-
     Route::get('', [RestorantController::class, 'index'])->name('index')->middleware('rp:user');
     Route::get('create', [RestorantController::class, 'create'])->name('create')->middleware('rp:admin');
     Route::post('', [RestorantController::class, 'store'])->name('store')->middleware('rp:admin');
@@ -55,8 +61,6 @@ Route::prefix('dishes')->name('dishes-')->group(function () {
     Route::delete('{dish}', [DishController::class, 'destroy'])->name('delete')->middleware('rp:admin');
     Route::get('show/{id}', [DishController::class, 'show'])->name('show')->middleware('rp:user');
     Route::delete('delete-picture/{dish}', [DishController::class, 'deletePicture'])->name('delete-picture');
-
-    // Route::get('show', [DishController::class, 'link'])->name('show-route');
 });
 
 
