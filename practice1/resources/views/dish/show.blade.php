@@ -16,11 +16,12 @@
             <div class="col-6">
               <label for="restorant">Restorant</label>
               <h5 name='restorant'>{{$dish->getDishRestorants->title}}</h5>
-              <label for="restorant">Title</label>
-              <h5 name='restorant'>{{$dish->title}}</h5>
-              <label for="restorant">Price</label>
-              <h5 name='restorant'>{{$dish->price}} &euro;</h5>
-
+              <label for="title">Title</label>
+              <h5 name='title'>{{$dish->title}}</h5>
+              <label for="price">Price</label>
+              <h5 name='price'>{{$dish->price}} &euro;</h5>
+              <label for="rating">Rating</label>
+              <h5 name='rating'>{{$dish->rating}}</h5>
             </div>
             <div class="col-6">
               @if($dish->photo)
@@ -32,7 +33,7 @@
           </div>
           @if(Auth::user()->role>9)
           <div class="controls">
-            <a class="btn btn-outline-success m-2" href="{{route('dishess-edit', $dish)}}">EDIT</a>
+            <a class="btn btn-outline-success m-2" href="{{route('dishes-edit', $dish)}}">EDIT</a>
             <form class="delete" action="{{route('dishes-delete', $dish)}}" method="post">
               @csrf
               @method('delete')

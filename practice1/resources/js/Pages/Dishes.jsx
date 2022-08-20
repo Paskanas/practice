@@ -82,6 +82,7 @@ export default function Dishes(props) {
                             <div className="card-body">
                                 <div>
                                     <button
+                                        className="btn btn-light"
                                         onClick={() => {
                                             sortHandler("restorant");
                                         }}
@@ -89,6 +90,7 @@ export default function Dishes(props) {
                                         Item Sort by restorant
                                     </button>
                                     <button
+                                        className="btn btn-light ms-2"
                                         onClick={() => {
                                             sortHandler("price");
                                         }}

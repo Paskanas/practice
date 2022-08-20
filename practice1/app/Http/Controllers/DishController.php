@@ -156,16 +156,24 @@ class DishController extends Controller
      */
     public function destroy(Dish $dish)
     {
-        //
+        $name = pathinfo($dish->photo, PATHINFO_FILENAME) ?? 'none';
+        $ext = pathinfo($dish->photo, PATHINFO_EXTENSION) ?? '.jpg';
+        $path = public_path('/images') . '/' . $name . '.' . $ext;
+
+        if (file_exists($path)) {
+            unlink($path);
+        }
+
+        $dish->delete();
+        return redirect()->route('dishes-index');
     }
 
     public function deletePicture(Dish $dish)
     {
-        $name = pathinfo($dish->photo, PATHINFO_FILENAME);
-        $ext = pathinfo($dish->photo, PATHINFO_EXTENSION);
+        $name = pathinfo($dish->photo, PATHINFO_FILENAME) ?? 'none';
+        $ext = pathinfo($dish->photo, PATHINFO_EXTENSION) ?? '.jpg';
+        $path = public_path('/images') . '/' . $name . '.' . $ext;
 
-        $path = asset('/images') . '/' . $name . '.' . $ext;
-        // dd($path);
         if (file_exists($path)) {
             unlink($path);
         }
