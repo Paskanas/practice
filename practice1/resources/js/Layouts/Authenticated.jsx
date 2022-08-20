@@ -8,7 +8,6 @@ import { Link } from "@inertiajs/inertia-react";
 export default function Authenticated({ auth, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
-    console.log(auth);
     return (
         <div className="min-h-screen bg-gray-100">
             <nav className="bg-white border-b border-gray-100">
@@ -89,21 +88,6 @@ export default function Authenticated({ auth, header, children }) {
                                                     New restorant
                                                 </a>
                                             )}
-                                            {/* my comment */}
-                                            {/* <Dropdown.Link
-                                            href={route("restorants-index")}
-                                            method="get"
-                                            as="button"
-                                        >
-                                            Restorants list
-                                        </Dropdown.Link>
-                                        <Dropdown.Link
-                                            href={route("restorants-create")}
-                                            method="get"
-                                            as="button"
-                                        >
-                                            New restorant
-                                        </Dropdown.Link> */}
                                         </Dropdown.Content>
                                     </Dropdown>
                                 </div>

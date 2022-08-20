@@ -19,6 +19,10 @@ return new class extends Migration
             $table->string('title');
             $table->unsignedFloat('price');
             $table->string('photo')->nullable();
+            $table->unsignedFloat('rating')->default(0);
+            $table->unsignedMediumInteger('rating_sum')->default(0);
+            $table->unsignedMediumInteger('rating_count')->default(0);
+            $table->string('rated_by')->default('');
             $table->timestamps();
         });
     }

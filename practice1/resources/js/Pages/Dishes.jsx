@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Authenticated from "@/Layouts/Authenticated";
 import { Head } from "@inertiajs/inertia-react";
+import Rating from "react-rating";
+import "font-awesome/css/font-awesome.min.css";
+import axios from "axios";
 
 export default function Dishes(props) {
-    console.log(props.dishes);
-
     const [dishes, setDishes] = useState([]);
     const [restorantSort, setRestorantSort] = useState("asc");
 
@@ -30,6 +31,32 @@ export default function Dishes(props) {
             return dish.title.toLowerCase().includes(e.target.value);
         });
         setDishes(filteredDishes);
+    };
+
+    const handleRating = (value, dishId, i) => {
+        axios
+            .put(
+                props.ziggy.url + "/dishes/save-rating/" + dishId,
+                {
+                    dishes: dishes,
+                    value: value,
+                    dishId: dishId,
+                    userId: props.auth.user.id,
+                },
+                dishes
+            )
+            .then((res) => {
+                const newDishes = [...dishes];
+                newDishes[i] = res.data.newDish;
+                setDishes(newDishes);
+            });
+    };
+
+    const letRate = (ratedBy) => {
+        if (ratedBy) {
+            return !ratedBy.toString().includes(String(props.auth.user.id));
+        }
+        return true;
     };
 
     return (
@@ -127,6 +154,48 @@ export default function Dishes(props) {
                                                                     alt="Dish photo"
                                                                 />
                                                             </div>
+                                                        )}
+                                                        {letRate(
+                                                            dish.rated_by
+                                                        ) ? (
+                                                            <Rating
+                                                                emptySymbol="fa fa-star-o fa-2x"
+                                                                fullSymbol="fa fa-star fa-2x"
+                                                                fractions={1}
+                                                                initialRating={
+                                                                    dish.rating
+                                                                }
+                                                                onClick={(
+                                                                    value
+                                                                ) =>
+                                                                    handleRating(
+                                                                        value,
+                                                                        dish.id,
+                                                                        i
+                                                                    )
+                                                                }
+                                                            />
+                                                        ) : (
+                                                            <>
+                                                                <Rating
+                                                                    emptySymbol="fa fa-star-o fa-2x"
+                                                                    fullSymbol="fa fa-star fa-2x"
+                                                                    fractions={
+                                                                        1
+                                                                    }
+                                                                    initialRating={
+                                                                        dish.rating
+                                                                    }
+                                                                    readonly
+                                                                />
+                                                                <h2 className="text-xl">
+                                                                    Rating
+                                                                    count:{" "}
+                                                                    {
+                                                                        dish.rating_count
+                                                                    }
+                                                                </h2>
+                                                            </>
                                                         )}
                                                     </div>
                                                 </div>

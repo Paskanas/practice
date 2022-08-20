@@ -7,7 +7,9 @@ use App\Http\Requests\StoreDishRequest;
 use App\Http\Requests\UpdateDishRequest;
 use App\Models\Restorant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use Spatie\LaravelIgnition\Recorders\DumpRecorder\Dump;
 
 class DishController extends Controller
 {
@@ -171,5 +173,23 @@ class DishController extends Controller
         $dish->photo = null;
         $dish->save();
         return redirect()->back();
+    }
+    public function saveRating(Request $request, Dish $dish)
+    {
+        dump($dish);
+        $dish->rating_sum += $request->value;
+        dump($dish->rating_sum);
+        $dish->rating_count++;
+        $dish->rating = $dish->rating_sum / $dish->rating_count;
+        if ($dish->rated_by === '') {
+            $dish->rated_by = $request->userId;
+        } else {
+            $dish->rated_by .= ",$request->userId";
+        }
+        $dish->save();
+        return response()->json([
+            'msg' => 'saved',
+            'newDish' => $dish
+        ]);
     }
 }

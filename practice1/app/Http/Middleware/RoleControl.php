@@ -22,6 +22,11 @@ class RoleControl
                 abort(401);
             }
         }
+        if ($role === 'user') {
+            if ($userRole < 1) {
+                abort(401);
+            }
+        }
 
         return $next($request);
     }

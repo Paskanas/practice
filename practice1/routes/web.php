@@ -61,6 +61,7 @@ Route::prefix('dishes')->name('dishes-')->group(function () {
     Route::delete('{dish}', [DishController::class, 'destroy'])->name('delete')->middleware('rp:admin');
     Route::get('show/{id}', [DishController::class, 'show'])->name('show')->middleware('rp:user');
     Route::delete('delete-picture/{dish}', [DishController::class, 'deletePicture'])->name('delete-picture');
+    Route::put('save-rating/{dish}', [DishController::class, 'saveRating'])->name('save-rating');
 });
 
 
