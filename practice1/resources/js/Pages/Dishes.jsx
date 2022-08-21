@@ -107,8 +107,8 @@ export default function Dishes(props) {
                                     />
                                 </div>
                                 <ul className="list-group">
-                                    {dishes.map(
-                                        (dish, i) => (
+                                    {dishes ? (
+                                        dishes.map((dish, i) => (
                                             <li
                                                 key={i}
                                                 className="list-group-item"
@@ -123,7 +123,7 @@ export default function Dishes(props) {
                                                             name="restorant"
                                                         >
                                                             {
-                                                                dish.restorantTitle
+                                                                dish?.restorantTitle
                                                             }
                                                         </h2>
                                                         <label htmlFor="title">
@@ -202,10 +202,9 @@ export default function Dishes(props) {
                                                     </div>
                                                 </div>
                                             </li>
-                                        )
-                                        // @empty
-                                        // <li className="list-group-item">No dishes yet</li>
-                                        // @endforelse
+                                        ))
+                                    ) : (
+                                        <li>No dishes yet</li>
                                     )}
                                 </ul>
                             </div>

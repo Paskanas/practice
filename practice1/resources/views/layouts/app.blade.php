@@ -6,7 +6,6 @@
 
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  {{-- my comment --}}
   <title>{{ config('app.name', 'Laravel') }}</title>
 
   <!-- Fonts -->
@@ -15,18 +14,8 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  {{-- my comment --}}
-  {{-- <link href="https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@300&display=swap" rel="stylesheet"> --}}
-
   {{-- <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
-  {{-- my comment --}}
-  {{-- <script>
-    const showUrl = "{{route('colors-show-route')}}";
-  const addToCartUrl = "{{route('front-add-cart')}}";
-  const mySmallCart = "{{route('my-small-cart')}}";
-
-  </script> --}}
   {{-- my comment --}}
   {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
   @vite(['resources/scss/app.scss', 'resources/js/bootstrap.js'])
@@ -36,7 +25,7 @@
   <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
       <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
+        <a class="navbar-brand" href="{{ url('/dashboard') }}">
           {{-- {{ config('app.name', 'Laravel') }} home button --}}
           <h3>BIT restorant</h3>
         </a>
@@ -80,7 +69,6 @@
                 @endif
               </div>
             </li>
-            {{-- my comment --}}
             <li class="nav-item dropdown">
               <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 Dishes
@@ -96,57 +84,33 @@
                 @endif
               </div>
             </li>
-
-            {{-- my comment --}}
-            {{-- <li class="nav-item dropdown">
+            <li class="nav-item dropdown">
               <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                Orders
+                {{ Auth::user()->name }}
               </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                @if(Auth::user()->role >9)
-                <a class="dropdown-item" href="{{route('orders-index')}}">
-            Orders List
-            </a>
-            @endif
-            <a class="dropdown-item" href="{{route('my-orders')}}">
-              My orders
-            </a>
-        </div>
-        </li> --}}
 
-        {{-- end pasted code --}}
-        <li class="nav-item dropdown">
-          <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-            {{ Auth::user()->name }}
-          </a>
-
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-              {{ __('Logout') }}
-            </a>
+                  {{ __('Logout') }}
+                </a>
 
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-              @csrf
-            </form>
-          </div>
-        </li>
-        {{-- my comment --}}
-        {{-- <li class="nav-item small--cart">
-
-            </li> --}}
-
-        @endguest
-        </ul>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                  @csrf
+                </form>
+              </div>
+            </li>
+            @endguest
+          </ul>
+        </div>
       </div>
-  </div>
-  </nav>
+    </nav>
 
-  <main class="py-4">
-    {{-- my comment --}}
-    {{-- @include('msg.main') --}}
-    @yield('content')
-  </main>
+    <main class="py-4">
+      {{-- my comment --}}
+      {{-- @include('msg.main') --}}
+      @yield('content')
+    </main>
   </div>
 </body>
 </html>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@section('content')
 
+@section('content')
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8">
@@ -8,7 +8,6 @@
         <div class="card-header">
           <h1>Edit dish</h1>
         </div>
-
         <div class="card-body">
           <ul>
             <div class="row">
@@ -23,7 +22,7 @@
                   <label for="title">Title</label>
                   <input class="form-control" type="text" name="title" value="{{$dish->title}}">
                   <label for="price">Price</label>
-                  <input class="form-control" type="text" name="price" value="{{$dish->price}}">
+                  <input class="form-control" type="text" name="price" value="{{$dish->price}} &euro;">
                   <label for="dish_photo">Photo</label>
                   <input class="form-control" type="file" name="dish_photo" value="{{$dish->photo}}">
                   <button class="btn btn-outline-primary mt-4 w-100" type="submit">Save</button>

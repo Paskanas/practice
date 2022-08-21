@@ -58,21 +58,11 @@ class DishController extends Controller
         $dish = new Dish;
 
         if ($request->file('dish_photo')) {
-
             $photo = $request->file('dish_photo');
-
             $ext = $photo->getClientOriginalExtension();
-
             $name = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
-
             $file = $name . '-' . rand(100000, 999999) . '.' . $ext;
-
-            // $Image = Image::make($photo)->pixelate(12);
-
-            // $Image->save(public_path() . '/images' . $file);
-
             $photo->move(public_path() . '/images', $file);
-
             $dish->photo = asset('/images') . '/' . $file;
         }
 
@@ -126,20 +116,13 @@ class DishController extends Controller
         }
 
         if ($request->file('dish_photo')) {
-
             $photo = $request->file('dish_photo');
-
             $ext = $photo->getClientOriginalExtension();
-
             $name = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
-
             $file = $name . '-' . rand(100000, 999999) . '.' . $ext;
-
             $photo->move(public_path() . '/images', $file);
-
             $dish->photo = asset('/images') . '/' . $file;
         }
-
 
         $dish->restorant_id = $request->restorant_id;
         $dish->title = $request->title;
@@ -184,9 +167,8 @@ class DishController extends Controller
     }
     public function saveRating(Request $request, Dish $dish)
     {
-        dump($dish);
         $dish->rating_sum += $request->value;
-        dump($dish->rating_sum);
+
         $dish->rating_count++;
         $dish->rating = $dish->rating_sum / $dish->rating_count;
         if ($dish->rated_by === '') {
@@ -194,6 +176,7 @@ class DishController extends Controller
         } else {
             $dish->rated_by .= ",$request->userId";
         }
+
         $dish->save();
         return response()->json([
             'msg' => 'saved',

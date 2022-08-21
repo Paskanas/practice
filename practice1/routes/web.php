@@ -32,7 +32,7 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::prefix('restorants-js')->name('restorants-js-')->group(function () {
+Route::prefix('restorants')->name('restorants-js-')->group(function () {
     Route::get('', [RestorantController::class, 'indexJs'])->name('index')->middleware('rp:user');
 });
 Route::prefix('dishes-js')->name('dishes-js-')->group(function () {
@@ -40,7 +40,7 @@ Route::prefix('dishes-js')->name('dishes-js-')->group(function () {
 });
 
 // Restorants
-Route::prefix('restorants')->name('restorants-')->group(function () {
+Route::prefix('restorantsAdmin')->name('restorants-')->group(function () {
     Route::get('', [RestorantController::class, 'index'])->name('index')->middleware('rp:user');
     Route::get('create', [RestorantController::class, 'create'])->name('create')->middleware('rp:admin');
     Route::post('', [RestorantController::class, 'store'])->name('store')->middleware('rp:admin');

@@ -21,13 +21,7 @@ export default function Restorants(props) {
                         <div className="card">
                             <div className="card-header">
                                 <h1 className="text-2xl">Restorants</h1>
-                                {/* <div>
-            <a className="btn btn-outline-primary m-2" href="{{route('restorant-index', ['sort'=>'asc'])}}">A_Z</a>
-          <a className="btn btn-outline-primary m-2" href="{{route('restorant-index', ['sort'=>'desc'])}}">Z_A</a>
-          <a className="btn btn-outline-primary m-2" href="{{route('restorant-index')}}">Reset</a>
-        </div>  */}
                             </div>
-
                             <div className="card-body">
                                 <ul className="list-group">
                                     {props.restorants ? (
